@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./Navbar";
 import Link from "next/link";
 import { fetchMenu } from "@/app/actions/fetchMenu";
+import SearchBar from "./SearchBar";
 
 interface SideBarProps {
   children: React.ReactNode;
@@ -23,7 +24,10 @@ const SideBar = async ({ children }: SideBarProps) => {
           className="drawer-overlay"
         ></label>
         <ul className="menu  p-4 w-80 bg-base-200 h-full">
-          <div className="py-2 text-xl font-bold">E-Live</div>
+          <div className="text-xl font-bold">
+            <Link href="/">E-Live</Link>
+          </div>
+          <div className="divider">building list</div>
           <>
             {menu ? (
               <li>
@@ -51,35 +55,6 @@ const SideBar = async ({ children }: SideBarProps) => {
               </li>
             ) : null}
           </>
-          {/* <li>
-            <details>
-              <summary>Building 1</summary>
-              <ul>
-                <li>
-                  <a>Floor 1</a>
-                </li>
-                <li>
-                  <a>Floor 2</a>
-                </li>
-                <li>
-                  <details>
-                    <summary>Floor 3</summary>
-                    <ul>
-                      <li>
-                        <a>Room 1</a>
-                      </li>
-                      <li>
-                        <a>Room 2</a>
-                      </li>
-                      <li>
-                        <a>Room 3</a>
-                      </li>
-                    </ul>
-                  </details>
-                </li>
-              </ul>
-            </details>
-          </li> */}
         </ul>
       </div>
     </div>

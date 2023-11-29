@@ -8,6 +8,13 @@ interface BeaconTableProps {
 
 const BeaconTable = ({ data }: BeaconTableProps) => {
   // const { connect, disconnect, isConnected, payload } = useMqtt();
+  if (data == undefined)
+    return (
+      <>
+        <div>No data</div>
+      </>
+    );
+
   return (
     <div className="h-[65vh] overflow-auto">
       <table className="table table-xs">

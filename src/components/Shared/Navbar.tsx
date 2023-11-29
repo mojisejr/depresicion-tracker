@@ -1,5 +1,7 @@
+import Link from "next/link";
 import React from "react";
 import { HiMenuAlt2 } from "react-icons/hi";
+import SearchBar from "./SearchBar";
 
 const Navbar = () => {
   return (
@@ -13,8 +15,14 @@ const Navbar = () => {
           <HiMenuAlt2 size={24} />
         </label>
       </div>
-      <div className="navbar-center text-white font-bold text-xl">E-Live</div>
-      <div className="navbar-end"></div>
+      <div className="navbar-center text-white font-bold text-xl">
+        <Link href="/">E-Live</Link>
+      </div>
+      <div className="navbar-end">
+        <div className="hidden lg:block">
+          <SearchBar />
+        </div>
+      </div>
     </div>
   );
 };

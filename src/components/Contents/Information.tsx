@@ -5,7 +5,13 @@ interface InformationProps {
 }
 
 const Information = ({ data }: InformationProps) => {
-  console.log(data);
+  if (data == undefined)
+    return (
+      <>
+        <div>no data</div>
+      </>
+    );
+
   return (
     <table className="table table-xs">
       <thead>
@@ -29,7 +35,15 @@ const Information = ({ data }: InformationProps) => {
         </tr>
         <tr>
           <td className="font-semibold">Gateway Position</td>
-          <td>top-left</td>
+          <td>
+            <ul>
+              {data.gateways.length <= 0
+                ? "N/A"
+                : data.gateways.map((g: any) => (
+                    <li key={g.mac}>{g.position}</li>
+                  ))}
+            </ul>
+          </td>
         </tr>
       </tbody>
     </table>

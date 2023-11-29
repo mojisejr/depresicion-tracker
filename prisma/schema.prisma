@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Building {
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String?
+  floors      Floor[]
+}
+
+model Floor {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  buildingId  Int
+  bulding     Building @relation(fields: [buildingId], references: [id])
+  rooms       Room[]
+}
+
+model Room {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  width       Float
+  height      Float
+  floorId     Int
+  floor       Floor     @relation(fields: [floorId], references: [id])
+  gateways    Gateway[]
+  beacons     Beacon[]
+}
+
+model Gateway {
+  mac         String  @id @unique
+  name        String?
+  description String?
+  x           Float
+  y           Float
+  position    String?
+  Room        Room?   @relation(fields: [roomId], references: [id])
+  roomId      Int?
+}
+
+model Beacon {
+  mac         String  @id @unique
+  description String?
+  rssi        Float[]
+  eName       String?
+  eSerial     String?
+  eModel      String?
+  txPower     Float
+  Room        Room?   @relation(fields: [roomId], references: [id])
+  roomId      Int?
+}
